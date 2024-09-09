@@ -12,3 +12,4 @@ def connect_to_milvus(host: str, port: str):
 if __name__ == "__main__":
     # Replace with your actual host and port
     connect_to_milvus("192.168.49.2", "30003")
+

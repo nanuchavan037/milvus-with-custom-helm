@@ -161,3 +161,4 @@ if __name__ == "__main__":
     create_index(collection)
     load_collection(collection)
     query_collection(collection)
+
