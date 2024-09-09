@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  namespace: milvus
+  labels:
+    app: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+        - name: minio
+          image: "{{ .Values.minio.image }}"
+          command:
+            - minio
+            - server
+            - /minio_data
+          ports:
+            - containerPort: {{ .Values.minio.port }}
+          env:
+            - name: MINIO_ACCESS_KEY
+              value: "{{ .Values.minio.accessKey }}"
+            - name: MINIO_SECRET_KEY
+              value: "{{ .Values.minio.secretKey }}"
+          volumeMounts:
+            - name: minio-data
+              mountPath: /minio_data
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "500Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+      volumes:
+        - name: minio-data
+          emptyDir: {}

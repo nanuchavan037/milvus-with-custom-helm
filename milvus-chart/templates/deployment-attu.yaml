@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: attu
+  namespace: milvus
+  labels:
+    app: attu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: attu
+  template:
+    metadata:
+      labels:
+        app: attu
+    spec:
+      containers:
+        - name: attu
+          image: "{{ .Values.attu.image }}"
+          ports:
+            - containerPort: {{ .Values.attu.port }}
+          env:
+            - name: MILVUS_URL
+              value: "milvus-standalone:19530"
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "500Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"

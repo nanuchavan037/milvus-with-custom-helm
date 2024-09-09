@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: milvus-standalone
+  namespace: milvus
+  labels:
+    app: milvus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: milvus
+  template:
+    metadata:
+      labels:
+        app: milvus
+    spec:
+      containers:
+        - name: milvus
+          image: "{{ .Values.milvus.image }}"
+          command:
+            - milvus
+            - run
+            - standalone
+          ports:
+            - containerPort: {{ .Values.milvus.grpcPort }}
+            - containerPort: {{ .Values.milvus.httpPort }}
+          env:
+            - name: ETCD_ENDPOINTS
+              value: "{{ .Values.milvus.etcdEndpoints }}"
+            - name: MINIO_ADDRESS
+              value: "{{ .Values.milvus.minioAddress }}"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"

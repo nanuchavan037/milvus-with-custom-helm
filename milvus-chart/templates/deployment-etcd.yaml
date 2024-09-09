@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: etcd
+  namespace: milvus
+  labels:
+    app: etcd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: etcd
+  template:
+    metadata:
+      labels:
+        app: etcd
+    spec:
+      containers:
+        - name: etcd
+          image: "{{ .Values.etcd.image }}"
+          command:
+            - etcd
+          args:
+            - "--advertise-client-urls=http://0.0.0.0:2379"
+            - "--listen-client-urls=http://0.0.0.0:2379"
+            - "--data-dir=/etcd"
+          ports:
+            - containerPort: {{ .Values.etcd.port }}
+          volumeMounts:
+            - name: etcd-data
+              mountPath: /etcd
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "500Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+      volumes:
+        - name: etcd-data
+          emptyDir: {}

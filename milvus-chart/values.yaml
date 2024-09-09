@@ -1,0 +1,31 @@
+namespace: milvus
+
+attu:
+  image: "zilliz/attu:v2.2.6"
+  port: 3000
+  service:
+    port: 8000
+    nodePort: 30005
+
+etcd:
+  image: "quay.io/coreos/etcd:v3.5.5"
+  port: 2379
+  service:
+    port: 2379
+    nodePort: 30001
+
+milvus:
+  image: "milvusdb/milvus:v2.2.11"
+  grpcPort: 19530
+  httpPort: 9091
+  etcdEndpoints: "etcd:2379"
+  minioAddress: "minio:9000"
+
+minio:
+  image: "minio/minio:RELEASE.2023-03-20T20-16-18Z"
+  port: 9000
+  accessKey: "minioadmin"
+  secretKey: "minioadmin"
+  service:
+    port: 9000
+    nodePort: 30002
