@@ -4,7 +4,7 @@ metadata:
   name: etcd
   namespace: milvus
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - name: client
       port: {{ .Values.etcd.service.port }}

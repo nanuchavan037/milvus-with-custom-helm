@@ -4,7 +4,7 @@ metadata:
   name: attu
   namespace: milvus
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - name: http
       port: {{ .Values.attu.service.port }}

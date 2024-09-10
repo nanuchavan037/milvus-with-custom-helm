@@ -28,12 +28,21 @@ kubectl get all -n milvus
 
 The services are exposed using NodePort. You can access them using the node IP and the assigned node ports:
 
+### If you are using minikube
 Attu: http://<NODE_IP>:30005
 Etcd: http://<NODE_IP>:30001
 Milvus:
 gRPC: http://<NODE_IP>:30003
 HTTP: http://<NODE_IP>:30004
 MinIO: http://<NODE_IP>:30002
+
+### if you are using cluster (EKS, AKS) and Network Type LoadBalancer
+Attu: http://<External_IP>:8000
+Etcd: http://<External_IP>:2379
+Milvus:
+gRPC: http://<External_IP>:19530
+HTTP: http://<External_IP>:9091
+MinIO: http://<External_IP>:9000
 
 Replace <NODE_IP> with the IP address of your Kubernetes node. If you're using Minikube, you can get the IP with:
 
@@ -86,5 +95,5 @@ Ensure that connection.py is executed successfully before running manage_collect
 
 ### Note:
 
-Replace host with your actual host IP in connection.py and manage_collection.py to connect with your Milvus database.
+Replace host with your actual host IP or External ip in case of LoadBalancer in connection.py and manage_collection.py to connect with your Milvus database.
 

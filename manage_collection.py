@@ -146,8 +146,8 @@ def query_collection(collection):
 
 if __name__ == "__main__":
     # Replace with your actual Milvus connection details and collection name
-    host = "192.168.49.2"  # Milvus host
-    port = "30003"  # Milvus port
+    host = "a4f3259f4b25a48d6bb544b3552cb43c-1859436994.us-west-2.elb.amazonaws.com"  # Milvus host
+    port = "19530"  # Milvus port
     collection_name = "hello_milvus"
     description = "hello_milvus is the simplest demo to introduce the APIs"
 
