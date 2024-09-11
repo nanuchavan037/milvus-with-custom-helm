@@ -11,7 +11,6 @@ def connect_to_milvus(host: str, port: str):
 
 if __name__ == "__main__":
     # Replace with your actual host and port
-    host = "a4f3259f4b25a48d6bb544b3552cb43c-1859436994.us-west-2.elb.amazonaws.com"
+    host = "a48df2f8eb0334f53820dcd250a2b318-1929392595.us-west-2.elb.amazonaws.com"
     port = "19530"
     connect_to_milvus(host, port)
-

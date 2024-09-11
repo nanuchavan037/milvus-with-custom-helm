@@ -38,11 +38,9 @@ MinIO: http://<NODE_IP>:30002
 
 ### if you are using cluster (EKS, AKS) and Network Type LoadBalancer
 Attu: http://<External_IP>:8000
-Etcd: http://<External_IP>:2379
 Milvus:
 gRPC: http://<External_IP>:19530
 HTTP: http://<External_IP>:9091
-MinIO: http://<External_IP>:9000
 
 Replace <NODE_IP> with the IP address of your Kubernetes node. If you're using Minikube, you can get the IP with:
 
@@ -59,6 +57,10 @@ helm uninstall milvus-release
 ```
 
 ## Using Python Scripts
+
+#### Note: 
+If you want to communicate with Milvus using code rather than the UI, you need to expose the Milvus service appropriately. For EKS or AKS, use a LoadBalancer service type, and for Minikube, use a NodePort.
+
 
 ### 1. connection.py
 

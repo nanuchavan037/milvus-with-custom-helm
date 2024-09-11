@@ -4,13 +4,13 @@ metadata:
   name: milvus-standalone
   namespace: milvus
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - name: grpc
       port: {{ .Values.milvus.grpcPort }}
-      nodePort: 30003
+      targetPort: {{ .Values.milvus.grpcTargetPort }}
     - name: http
       port: {{ .Values.milvus.httpPort }}
-      nodePort: 30004
+      targetPort: {{ .Values.milvus.httpTargetPort }}
   selector:
     app: milvus

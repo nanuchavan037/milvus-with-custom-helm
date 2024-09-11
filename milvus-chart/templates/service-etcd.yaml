@@ -4,10 +4,10 @@ metadata:
   name: etcd
   namespace: milvus
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - name: client
       port: {{ .Values.etcd.service.port }}
-      nodePort: {{ .Values.etcd.service.nodePort }}
+      targetPort: {{ .Values.etcd.targetPort }}
   selector:
     app: etcd

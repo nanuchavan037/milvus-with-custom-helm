@@ -4,10 +4,10 @@ metadata:
   name: minio
   namespace: milvus
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - name: minio
       port: {{ .Values.minio.service.port }}
-      nodePort: {{ .Values.minio.service.nodePort }}
+      targetPort: {{ .Values.minio.targetPort }}
   selector:
     app: minio

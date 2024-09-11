@@ -9,6 +9,5 @@ spec:
     - name: http
       port: {{ .Values.attu.service.port }}
       targetPort: {{ .Values.attu.port }}
-      nodePort: {{ .Values.attu.service.nodePort }}
   selector:
     app: attu
