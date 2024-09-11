@@ -94,6 +94,14 @@ Load the collection into memory.
 Query the collection to retrieve inserted entities.
 Ensure that connection.py is executed successfully before running manage_collection.py.
 
+### 3. list_collection.py
+
+Listing Collections
+The list_collection.py script lists all the collections in Milvus.
+
+```bash
+python  list_collection.py
+```
 
 ### Note:
 
